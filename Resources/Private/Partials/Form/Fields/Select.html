@@ -1,0 +1,18 @@
+<div class="mb-3">
+  <label for="{name}" class="form-label">{field.label}</label>
+  <select
+    class="form-select"
+    id="{name}"
+    name="config[{name}]"
+  >
+    <f:for each="{field.options}" as="option">
+      <option
+        value="{option.value -> f:format.htmlspecialchars()}"
+        {f:if(condition: option.value == field.value, then: 'selected')}
+      >
+        {option.label}
+      </option>
+    </f:for>
+  </select>
+  <small class="form-text text-muted">{field.description}</small>
+</div>

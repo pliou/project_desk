@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+  <file source-language="es" datatype="plaintext" original="messages">
+    <body>
+      <trans-unit id="mlang_tabs_tab">
+        <source>Configuración de Projectdesk</source>
+      </trans-unit>
+      <trans-unit id="mlang_labels_tabdescr">
+        <source>Configura la integración de Projectdesk</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

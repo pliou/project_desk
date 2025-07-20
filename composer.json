@@ -1,0 +1,21 @@
+{
+    "name": "ppl/project_desk",
+    "description": "Tool",
+    "type": "typo3-cms-extension",
+    "license": [
+        "GPL-2.0-or-later"
+    ],
+    "require": {
+        "typo3/cms-core": "^13.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ppl\\ProjectDesk\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "project_desk"
+        }
+    }
+}

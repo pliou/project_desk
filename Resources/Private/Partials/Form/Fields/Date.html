@@ -1,0 +1,11 @@
+<div class="mb-3">
+  <label for="{name}" class="form-label">{field.label}</label>
+  <input
+    type="date"
+    class="form-control"
+    id="{name}"
+    name="config[{name}]"
+    value="{field.value -> f:format.date(format: 'Y-m-d')}"
+  />
+  <small class="form-text text-muted">{field.description}</small>
+</div>

@@ -1,0 +1,18 @@
+  <ul class="pd-nav-tabs">
+    <f:for each="{tabs}" as="label" key="tabKey">
+      <li class="pd-nav-item">
+        <f:if condition="{tabKey} == {activeTab}">
+          <f:then>
+            <a href="{tabUrls.{tabKey}}" class="pd-nav-link active">
+              <f:translate key="{label}" />
+            </a>
+          </f:then>
+          <f:else>
+            <a href="{tabUrls.{tabKey}}" class="pd-nav-link">
+              <f:translate key="{label}" />
+            </a>
+          </f:else>
+        </f:if>
+      </li>
+    </f:for>
+  </ul>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages">
+    <body>
+      <trans-unit id="team_exists"><source>Team already exists</source></trans-unit>
+      <trans-unit id="team_unchanged"><source>Team already exists or is unchanged</source></trans-unit>
+      <trans-unit id="save_failed"><source>Saving team failed. Please try again.</source></trans-unit>
+      <trans-unit id="remove_failed"><source>Could not remove team. Try again.</source></trans-unit>
+      <trans-unit id="update_failed"><source>Could not update team. Try again.</source></trans-unit>
+      <trans-unit id="placeholder_team_name"><source>Enter team name…</source></trans-unit>
+    </body>
+  </file>
+</xliff>

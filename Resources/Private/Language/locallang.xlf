@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages">
+    <body>
+    
+      <!-- Teams -->
+      <trans-unit id="teams_label">
+        <source>Teams</source>
+      </trans-unit>
+      <trans-unit id="teams_description">
+        <source>Create one or more teams</source>
+      </trans-unit>
+      <trans-unit id="teams_placeholder">
+        <source>Enter team name…</source>
+      </trans-unit>
+
+    </body>
+  </file>
+</xliff>

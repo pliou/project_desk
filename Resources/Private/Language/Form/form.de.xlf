@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2">
+  <file source-language="de" datatype="plaintext" original="messages" date="2025-07-10T00:00:00Z">
+    <body>
+      <!-- Allgemeine Labels -->
+      <trans-unit id="button.save" xml:space="preserve">
+        <source>Speichern</source>
+      </trans-unit>
+
+      <!-- Repeater („Teams“) -->
+      <trans-unit id="repeater.teams.label">
+        <source>Teams</source>
+      </trans-unit>
+      <trans-unit id="repeater.teams.description">
+        <source>Lege hier eine oder mehrere Teams an</source>
+      </trans-unit>
+      <trans-unit id="repeater.teams.placeholder">
+        <source>Team‑Name eingeben…</source>
+      </trans-unit>
+      <trans-unit id="repeater.teams.button.add">
+        <source>+ Team hinzufügen</source>
+      </trans-unit>
+
+      <!-- Beispiel für andere Feldtypen -->
+      <trans-unit id="field.number.label">
+        <source>Maximale Einträge</source>
+      </trans-unit>
+      <trans-unit id="field.number.description">
+        <source>Wie viele Einträge maximal erlaubt sind</source>
+      </trans-unit>
+      <trans-unit id="field.textarea.label">
+        <source>Beschreibung</source>
+      </trans-unit>
+      <trans-unit id="field.textarea.description">
+        <source>Freitext zur Konfiguration</source>
+      </trans-unit>
+      <!-- …weitere Felder nach Bedarf… -->
+    </body>
+  </file>
+</xliff>

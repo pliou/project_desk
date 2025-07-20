@@ -1,0 +1,11 @@
+<ul class="team-nav-tabs">
+  <f:for each="{team_tab}" as="teamName" iteration="tabIterator">
+    <li class="team-nav-item">
+      <a href="#"
+         class="team-nav-link {f:if(condition: tabIterator.isFirst, then: 'active')}"
+         data-team-key="{teamName}">
+        <span>{teamName}</span>
+      </a>
+    </li>
+  </f:for>
+</ul>

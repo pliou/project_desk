@@ -1,0 +1,106 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: true
+
+  Ppl\ProjectDesk\:
+    resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
+    autowire: true
+
+  project_desk.ajax.update_repeater:
+    class: Ppl\ProjectDesk\Ajax\UpdateRepeater
+    arguments:
+      $teamRepository: '@project_desk.team_repository'
+      
+  project_desk.ajax.team_assignment:
+    class: Ppl\ProjectDesk\Ajax\TeamAssignment
+    arguments:
+      $dataHelper: '@project_desk.data_helper'
+
+  project_desk.config_controller:
+    class: Ppl\ProjectDesk\Controller\ConfigController
+    arguments:
+      $configService: '@project_desk.config_service'
+      $assignmentService: '@project_desk.assignment_service'
+      $moduleTemplateFactory: '@TYPO3\CMS\Backend\Template\ModuleTemplateFactory'
+      $uriBuilder: '@TYPO3\CMS\Backend\Routing\UriBuilder'
+      $teamRepository: '@project_desk.team_repository'
+      $flashMessageService: '@project_desk.flash_message_service'
+      $licenseRepository: '@project_desk.license_repository'
+      $translationService: '@project_desk.translation_service'
+      $jSTranslationManager: '@project_desk.js_translation_manager'
+      $assetManager: '@project_desk.asset_manager'
+
+  project_desk.config_service:
+    class: Ppl\ProjectDesk\Service\ConfigService
+    arguments:
+      $translationService: '@Ppl\ProjectDesk\Service\TranslationService'
+      $teamRepository: '@Ppl\ProjectDesk\Repository\TeamRepository'
+
+  project_desk.assignment_service:
+    class: Ppl\ProjectDesk\Service\AssignmentService
+
+  project_desk.translation_service:
+    class: Ppl\ProjectDesk\Service\TranslationService
+
+  project_desk.asset_collector_service:
+    class: Ppl\ProjectDesk\Service\AssetCollectorService
+
+  project_desk.js_translation_manager:
+    class: Ppl\ProjectDesk\Manager\JSTranslationManager
+    arguments:
+      $translationService: '@project_desk.translation_service'
+      $pageRenderer: '@TYPO3\CMS\Core\Page\PageRenderer'
+
+  project_desk.asset_manager:
+    class: Ppl\ProjectDesk\Manager\AssetManager
+
+  project_desk.data_helper:
+    class: Ppl\ProjectDesk\Helper\DataHelper
+    arguments:
+      $connectionPool: '@TYPO3\CMS\Core\Database\ConnectionPool'
+
+  project_desk.add_initial_teamsUpdate:
+    class: Ppl\ProjectDesk\Updates\AddInitialTeamsUpdate
+    arguments:
+      $connectionPool: '@TYPO3\CMS\Core\Database\ConnectionPool'
+    tags:
+      - name: 'install.upgrade.wizard'
+
+  project_desk.assign_admins_to_team_update:
+    class: Ppl\ProjectDesk\Updates\AssignAdminsToTeamUpdate
+    arguments:
+      $connectionPool: '@TYPO3\CMS\Core\Database\ConnectionPool'
+    tags:
+      - name: 'install.upgrade.wizard'
+
+  project_desk.flash_message_service:
+    class: Ppl\ProjectDesk\Service\FlashMessageService
+
+  project_desk.team_repository:
+    class: Ppl\ProjectDesk\Repository\TeamRepository
+    arguments:
+      - '@TYPO3\CMS\Core\Database\ConnectionPool'
+
+  project_desk.license_repository:
+    class: Ppl\ProjectDesk\Repository\LicenseRepository
+    arguments:
+      - '@TYPO3\CMS\Core\Database\ConnectionPool'
+
+  Ppl\ProjectDesk\Command\TestCommand:
+    tags:
+      -
+        name: console.command
+        command: 'project-desk:test'
+        description: test
+        schedulable: false
+
+  Ppl\ProjectDesk\Command\DebugContainerCommand:
+    arguments:
+        $container: '@service_container'
+    tags:
+      - 
+        name: console.command
+        command: 'project-desk:debug:container'

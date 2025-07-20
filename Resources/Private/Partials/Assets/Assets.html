@@ -1,0 +1,5 @@
+<f:for each="{js_module}" as="js">
+    <script type="module" src="{f:uri.resource(path: js.path)}"></script>
+</f:for>
+
+<script type="module" src="{f:uri.resource(path: 'EXT:project_desk/Resources/Public/JavaScript/utils/ajax.js')}"></script>

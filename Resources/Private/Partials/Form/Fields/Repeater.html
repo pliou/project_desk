@@ -1,0 +1,39 @@
+<div class="mb-3">
+  <label class="form-label">{field.label}</label>
+  <small class="form-text text-muted">{field.description}</small>
+
+  <div id="{name}-container" class="mb-2 team-members">
+    <f:for each="{field.value}" as="team">
+      <div class="team-member-row repeater-item">
+        <f:if condition="{team} === 'Admins'">
+          <f:then>
+            <input
+              type="text"
+              class="form-control"
+              name="config[{name}][]"
+              value="{team -> f:format.htmlspecialchars()}"
+              readonly
+              style="background-color: #f8f9fa; font-weight: bold;"
+            />
+          </f:then>
+          <f:else>
+            <input
+              type="text"
+              class="form-control"
+              name="config[{name}][]"
+              value="{team -> f:format.htmlspecialchars()}"
+              placeholder="{field.placeholder}"
+            />
+            <button type="button" class="remove-member" aria-label="Remove">&#10005;</button>
+          </f:else>
+        </f:if>
+      </div>
+    </f:for>
+  </div>
+
+  <div class="add-member-container">
+    <button type="button" class="add-member-button w-100" id="add-{name}-btn">
+      <f:translate key="{td_form}repeater.teams.button.add" />
+    </button>
+  </div>
+</div>

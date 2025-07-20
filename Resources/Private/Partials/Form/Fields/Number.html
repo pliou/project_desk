@@ -1,0 +1,13 @@
+<div class="mb-3">
+  <label for="{name}" class="form-label">{field.label}</label>
+  <input
+    type="number"
+    class="form-control"
+    id="{name}"
+    name="config[{name}]"
+    value="{field.value -> f:format.htmlspecialchars()}"
+    min="{field.min}"
+    max="{field.max}"
+  />
+  <small class="form-text text-muted">{field.description}</small>
+</div>

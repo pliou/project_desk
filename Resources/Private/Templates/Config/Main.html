@@ -1,0 +1,18 @@
+<!-- EXT:project_desk/Resources/Private/Templates/Config/Main.html -->
+<f:layout name="PDLayout" />
+
+<f:section name="Content">
+  <h1 class="assignment-title">
+    <f:translate key="{td}config_label" />
+  </h1>
+
+  <f:render partial="Tabs/MainTab" arguments="{tabs: tabs, tabUrls: tabUrls, activeTab: activeTab}" />
+  <f:if condition="{team_tab}">
+    <f:render partial="Tabs/TeamTab" arguments="{team_tab: team_tab}" />
+  </f:if>
+  <div class="pd-content-wrapper">
+    <f:render partial="Form/Form" arguments="{_all}" />
+  </div>
+
+  <f:render partial="Assets/Assets" arguments="{_all}" />
+</f:section>

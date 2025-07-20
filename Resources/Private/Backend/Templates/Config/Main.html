@@ -1,0 +1,25 @@
+<f:layout name="Default" />
+
+<f:section name="content">
+  <h1>Projectdesk Configuration</h1>
+
+  <ul class="nav nav-tabs" role="tablist">
+    <f:for each="{tabs}" as="label" key="tabName">
+      <li class="nav-item" role="presentation">
+        <a
+          class="nav-link {f:if(condition: tabName == activeTab, then: 'active')}"
+          href="?tab={tabName}"
+        >
+          <f:translate key="{label}" />
+        </a>
+      </li>
+    </f:for>
+  </ul>
+
+  <div class="tab-content mt-3">
+    <p>Aktiver Tab: <strong>{activeTab}</strong></p>
+    <pre>
+      <f:format.raw>{config -> f:format.json()}</f:format.raw>
+    </pre>
+  </div>
+</f:section>

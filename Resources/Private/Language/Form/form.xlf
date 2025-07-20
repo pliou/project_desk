@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2">
+  <file source-language="en" datatype="plaintext" original="messages">
+    <body>
+
+      <trans-unit id="button.save">
+        <source>Save</source>
+      </trans-unit>
+
+      <trans-unit id="repeater.teams.button.add">
+        <source>+ Add team</source>
+      </trans-unit>
+
+      <trans-unit id="assignments.title">
+        <source>Team Assignments</source>
+      </trans-unit>
+      <trans-unit id="legend.locked">
+        <source>locked</source>
+      </trans-unit>
+      <trans-unit id="legend.available">
+        <source>Available Users</source>
+      </trans-unit>
+      <trans-unit id="legend.available.description">
+        <source>Select users not yet assigned to this team (left field).</source>
+      </trans-unit>
+      <trans-unit id="legend.assigned">
+        <source>Assigned Users</source>
+      </trans-unit>
+      <trans-unit id="legend.assigned.description">
+        <source>Users already assigned to this team (right field).</source>
+      </trans-unit>
+      <trans-unit id="legend.control">
+        <source>Controls</source>
+      </trans-unit>
+      <trans-unit id="legend.control.description">
+        <source>Use arrow buttons to assign or remove users. Disabled for locked teams.</source>
+      </trans-unit>
+
+      
+    </body>
+  </file>
+</xliff>

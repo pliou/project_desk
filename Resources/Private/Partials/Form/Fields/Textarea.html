@@ -1,0 +1,10 @@
+<div class="mb-3">
+  <label for="{name}" class="form-label">{field.label}</label>
+  <textarea
+    class="form-control"
+    id="{name}"
+    name="config[{name}]"
+    rows="{field.rows -> f:format.htmlspecialchars()}"
+  >{field.value -> f:format.raw()}</textarea>
+  <small class="form-text text-muted">{field.description}</small>
+</div>

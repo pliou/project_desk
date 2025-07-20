@@ -1,0 +1,68 @@
+<!-- AssignUserToTeam Partial -->
+<div class="team-assignment-container">
+  <h2 class="assignment-title">
+    <f:translate key="{td}assignments.title" />
+  </h2>
+
+  <f:for each="{_assignments}" as="team" key="teamName">
+    <f:if condition="{teamName} == 'Admins'">
+      <f:then>
+        <fieldset class="locked-team">
+          <legend class="team-title">
+            {teamName} (<f:translate key="{td}legend.locked" />)
+          </legend>
+          <div class="user-assignment" data-team-uid="{team.uid}">
+            <label><f:translate key="{td}legend.assigned" />:</label>
+            <select multiple size="10" class="assigned-users" disabled>
+              <f:for each="{team.assigned}" as="user">
+                <option value="{user.uid}">{user.name}</option>
+              </f:for>
+            </select>
+          </div>
+        </fieldset>
+      </f:then>
+      <f:else>
+        <fieldset>
+          <legend class="team-title">{teamName}</legend>
+          <div class="user-assignment" data-team-uid="{team.uid}">
+            <div>
+              <label><f:translate key="{td}legend.available" /></label>
+              <select name="assignment[{team.uid}][]" multiple size="10" class="available-users">
+                <f:for each="{team.to_assign}" as="user">
+                  <option value="{user.uid}">{user.name}</option>
+                </f:for>
+              </select>
+            </div>
+
+            <div class="assignment-buttons">
+              <button type="button" class="assign">&gt;&gt;</button>
+              <button type="button" class="unassign">&lt;&lt;</button>
+            </div>
+
+            <div>
+              <label><f:translate key="{td}legend.assigned" /></label>
+              <select name="assigned[{team.uid}][]" multiple size="10" class="assigned-users">
+                <f:for each="{team.assigned}" as="user">
+                  <option value="{user.uid}">{user.name}</option>
+                </f:for>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+      </f:else>
+    </f:if>
+  </f:for>
+
+  <!-- Legende am Ende -->
+  <div class="assignment-legend">
+    <p><strong><f:translate key="{td}legend.available" />:</strong>
+      <f:translate key="{td}legend.available.description" />
+    </p>
+    <p><strong><f:translate key="{td}legend.assigned" />:</strong>
+      <f:translate key="{td}legend.assigned.description" />
+    </p>
+    <p><strong><f:translate key="{td}legend.control" />:</strong>
+      <f:translate key="{td}legend.control.description" />
+    </p>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<!-- Resources/Private/Partials/Form.html -->
+<form method="post" action="{saveUrls.{activeTab}}">
+  <f:for each="{config}" as="field" key="name">
+    <f:switch expression="{field.type}">
+
+      <!-- Einfache Text‑Inputs -->
+      <f:case value="text">
+        <f:render partial="Form/Fields/Text" arguments="{name: name, field: field, td_form: td_form}" />
+      </f:case>
+
+      <!-- Number‑Inputs -->
+      <f:case value="number">
+        <f:render partial="Form/Fields/Number" arguments="{name: name, field: field, td_form: td_form}" />
+      </f:case>
+
+      <!-- Textareas -->
+      <f:case value="textarea">
+        <f:render partial="Form/Fields/Textarea" arguments="{name: name, field: field, td_form: td_form}" />
+      </f:case>
+
+      <!-- Selects -->
+      <f:case value="select">
+        <f:render partial="Form/Fields/Select" arguments="{name: name, field: field, td_form: td_form}" />
+      </f:case>
+      <!-- Radios -->
+      <f:case value="radio">
+        <f:render partial="Form/Fields/Radio" arguments="{name: name, field: field, td_form: td_form}" />
+      </f:case>
+
+      <!-- Checkboxes -->
+      <f:case value="checkboxes">
+        <f:render partial="Form/Fields/Checkboxes" arguments="{name: name, field: field, td_form: td_form}" />
+      </f:case>
+
+      <!-- Datepicker -->
+      <f:case value="date">
+        <f:render partial="Form/Fields/Date" arguments="{name: name, field: field, td_form: td_form}" />
+      </f:case>
+
+      <!-- Repeater for teams -->
+      <f:case value="repeater">
+        <f:render partial="Form/Fields/Repeater" arguments="{name: name, field: field, td_form: td_form}" />
+      </f:case>
+      
+      <!-- Description field -->
+      <f:case value="description">
+        <f:render partial="Form/Fields/Description" arguments="{_all}" />
+      </f:case>
+
+      <!-- AssignUserToTeam -->
+      <f:case value="assign">
+        <f:debug>{_all}</f:debug>
+        <f:render partial="Form/Fields/AssignUserToTeam" arguments="{_assignments: config.assign.value, td: td_form}" />
+      </f:case>
+
+    </f:switch>
+  </f:for>
+  <f:if condition="{needsSave}">
+    <div class="mt-4">
+      <button type="submit" class="btn btn-primary">
+        <f:translate key="{td_form}button.save" />
+      </button>
+    </div>
+  </f:if>
+    <!-- Info and Error messages -->
+  <f:if condition="{info}">
+    <div class="alert alert-info mt-4" role="alert">
+      {info}
+    </div>
+  </f:if>
+  <f:if condition="{error}">
+    <div class="alert alert-danger mt-2" role="alert">
+      {error}
+    </div>
+  </f:if>
+
+</form>
