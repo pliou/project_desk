@@ -49,8 +49,11 @@
 
       <!-- AssignUserToTeam -->
       <f:case value="assign">
-        <f:debug>{_all}</f:debug>
         <f:render partial="Form/Fields/AssignUserToTeam" arguments="{_assignments: config.assign.value, td: td_form}" />
+      </f:case>
+
+      <f:case value="hidden_input">
+        <f:render partial="Form/Fields/HiddenInput" arguments="{field: field}" />
       </f:case>
 
     </f:switch>

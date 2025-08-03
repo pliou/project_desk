@@ -41,4 +41,15 @@ final class TranslationService
 
         return $translated !== null ? $translated : $key;
     }
+
+    static function tByD(string $key, string $domain, string $extensionName = 'project_desk', array $arguments = []): string
+    {
+        $translated = LocalizationUtility::translate(
+            (TranslationMapping::TRANSLATION_DOMAIN[$domain] ?? '') . $key, 
+            $extensionName, 
+            $arguments
+        );
+
+        return $translated !== null ? $translated : $key;
+    }
 }

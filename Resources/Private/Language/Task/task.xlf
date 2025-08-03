@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages">
+    <body>
+    
+      <trans-unit id="task_list">
+        <source>Assigned Tasks</source><target>Zugewiesene Aufgaben</target>
+      </trans-unit>
+      <trans-unit id="todo_tasks">
+        <source>To-do Tasks</source><target>To‑do Aufgaben</target>
+      </trans-unit>
+
+      <!-- Spaltenüberschriften -->
+      <trans-unit id="status_open">
+        <source>Open</source>
+        <target>Offen</target>
+      </trans-unit>
+      <trans-unit id="status_in_progress">
+        <source>In Progress</source>
+        <target>In Bearbeitung</target>
+      </trans-unit>
+      <trans-unit id="status_done">
+        <source>Done</source>
+        <target>Erledigt</target>
+      </trans-unit>
+
+      <!-- Sidebar -->
+      <trans-unit id="todo_tasks">
+        <source>Todo Tasks</source>
+        <target>Pool offener Tasks</target>
+      </trans-unit>
+
+      <!-- Labels in Task-Card -->
+      <trans-unit id="label_status">
+        <source>Status</source>
+        <target>Status</target>
+      </trans-unit>
+      <trans-unit id="label_assignee">
+        <source>Assignee</source>
+        <target>Zuweisen an</target>
+      </trans-unit>
+
+
+    </body>
+  </file>
+</xliff>

@@ -6,6 +6,10 @@ use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 
 class FlashMessageService
 {
+    const ACTIVE_TEAM = 'active_team';
+    const ERROR = 'error';
+    const INFO = 'info';
+
     protected BackendUserAuthentication $backendUser;
     protected string $sessionKey = 'project_desk_flash_messages';
 
@@ -16,25 +20,25 @@ class FlashMessageService
 
     public function setFlashError(string $action, string $message): void
     {
-        $this->setFlashMessage($action, 'error', $message);
+        $this->setFlashMessage($action, self::ERROR, $message);
     }
 
     public function setFlashInfo(string $action, string $message): void
     {
-        $this->setFlashMessage($action, 'info', $message);
+        $this->setFlashMessage($action, self::INFO, $message);
     }
 
     public function getFlashError(string $action): ?string
     {
-        return $this->getFlashMessage($action, 'error');
+        return $this->getFlashMessage($action, self::ERROR);
     }
 
     public function getFlashInfo(string $action): ?string
     {
-        return $this->getFlashMessage($action, 'info');
+        return $this->getFlashMessage($action, self::INFO);
     }
 
-    protected function setFlashMessage(string $action, string $type, string $message): void
+    public function setFlashMessage(string $action, string $type, string $message): void
     {
         $userId = $this->getUserId();
         $flashMessages = $this->getAllFlashMessages();
@@ -50,7 +54,7 @@ class FlashMessageService
         $this->saveAllFlashMessages($flashMessages);
     }
 
-    protected function getFlashMessage(string $action, string $type): ?string
+    public function getFlashMessage(string $action, string $type): ?string
     {
         $userId = $this->getUserId();
         $flashMessages = $this->getAllFlashMessages();
@@ -62,10 +66,6 @@ class FlashMessageService
 
             if (empty($flashMessages[$userId][$action])) {
                 unset($flashMessages[$userId][$action]);
-            }
-
-            if (empty($flashMessages[$userId])) {
-                unset($flashMessages[$userId]);
             }
 
             $this->saveAllFlashMessages($flashMessages);

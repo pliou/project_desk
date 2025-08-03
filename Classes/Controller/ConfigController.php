@@ -2,12 +2,12 @@
 
 namespace Ppl\ProjectDesk\Controller;
 
-use Ppl\ProjectDesk\Debugger\Debugger;
+use Ppl\ProjectDesk\Helper\AccessDataHelper;
+use Ppl\ProjectDesk\Helper\GeneralDataHelper;
 use Ppl\ProjectDesk\Service\ConfigService;
 use Ppl\ProjectDesk\Service\AssignmentService;
 use Ppl\ProjectDesk\Service\FlashMessageService;
 use Ppl\ProjectDesk\Mapping\RouteMapping;
-use Ppl\ProjectDesk\Mapping\AssetCollectorMapping;
 use Ppl\ProjectDesk\Mapping\TranslationMapping;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -60,6 +60,8 @@ final class ConfigController
         private readonly TranslationService $translationService,
         private readonly JSTranslationManager $jSTranslationManager,
         private readonly AssetManager $assetManager,
+        private readonly AccessDataHelper $accessDataHelper,
+        private readonly GeneralDataHelper $generalDataHelper,
     ) {}
 
     public function mainAction(ServerRequestInterface $request): ResponseInterface
@@ -85,7 +87,6 @@ final class ConfigController
 
     public function assignAction(ServerRequestInterface $request): ResponseInterface
     {
-        // $this->assetCollectorManager->addStyleSheetByIdentifier(AssetCollectorMapping::USER_TEAM_ASSIGN_CSS_IDENTIFIER);
         return $this->render(self::TAB_NAMES[3], $request);
     }
 
@@ -106,19 +107,19 @@ final class ConfigController
         
 
         $this->assignUri($moduleTemplate);
-
+        $config = $this->configService->getByTab($tabKey);
         $templateVariables = [
             'activeTab' => $tabKey,
-            'config'    => $this->configService->getByTab($tabKey),
+            'config'    => $config,
             'error'    => $this->flashMessageService->getFlashError($tabKey),
             'info'    => $this->flashMessageService->getFlashInfo($tabKey),
             'td' => TranslationMapping::TRANSLATION_DOMAIN['config'],
             'td_form' => TranslationMapping::TRANSLATION_DOMAIN['form'],
             'needsSave' => self::NEEDS_SAVE[$tabKey] ?? false,
             'team_tab' => $tabKey === ConfigController::TAB_NAMES[1] ? $this->teamRepository->findAllNames() : [],
+            'active_team_tab' => $tabKey === ConfigController::TAB_NAMES[1] ? $config['team']['value'] : '',
         ];
 
-        Debugger::debug($templateVariables);
         // bind @ html
         $this->assetManager->addByTab($templateVariables, $tabKey);
 
@@ -183,17 +184,22 @@ final class ConfigController
             $data = $request->getParsedBody();
             switch ($tab) {
                 case self::TAB_NAMES[0]: // 'general'
-                    // No specific logic for 'general' tab, just a placeholder
+                    $this->generalDataHelper->saveGeneralConfig($data);
                     break;
                 case self::TAB_NAMES[1]: // 'access'
-                    // $this->assignmentService->syncWith($data['config'][$tab] ?? []);
+                    $this->accessDataHelper->saveAccess($data);
+                    if (isset($data['config']['active_team'])) {
+                        $this->flashMessageService->setFlashMessage(
+                            ConfigController::TAB_NAMES[1], 
+                            FlashMessageService::ACTIVE_TEAM,
+                            $data['config']['active_team']
+                        );
+                    }
                     break;
 
                 case self::TAB_NAMES[2]: // 'team'
-                    // $this->teamRepository->syncWith($data['config'][$tab] ?? []);
                     break;
                 case self::TAB_NAMES[3]: // 'assign'
-                    $this->assignmentService->syncWith($data['config'][$tab] ?? []);
                     break;
 
                 case self::TAB_NAMES[4]: // 'license'
@@ -205,7 +211,7 @@ final class ConfigController
         } catch (\Exception $e) {
             $errorMessage = $this->translationService
                 ->translateByDomain(
-                    'begining_error_message',
+                    'beginning_error_message',
                     'config',
                     'project_desk',
                     [$translatedTab]
@@ -227,5 +233,4 @@ final class ConfigController
 
         return new RedirectResponse((string) $uri);
     }
-    
 }

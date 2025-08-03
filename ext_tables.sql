@@ -29,3 +29,27 @@ CREATE TABLE tx_project_desk_team_be_users_mm (
   uid_foreign INT NOT NULL,
   PRIMARY KEY (uid_local, uid_foreign)
 );
+
+CREATE TABLE tx_project_desk_access_config_by_team (
+  uid INT AUTO_INCREMENT PRIMARY KEY,
+  pid INT DEFAULT 0 NOT NULL,
+  tstamp INT DEFAULT 0 NOT NULL,
+  crdate INT DEFAULT 0 NOT NULL,
+  deleted TINYINT(1) DEFAULT 0 NOT NULL,
+  hidden TINYINT(1) DEFAULT 0 NOT NULL,
+
+  team VARCHAR(255) NOT NULL,
+  task_permissions TEXT NOT NULL,
+  phase_permissions TEXT NOT NULL,
+);
+
+CREATE TABLE tx_project_desk_general_config (
+  uid INT AUTO_INCREMENT PRIMARY KEY,
+  pid INT NOT NULL DEFAULT 0,
+  tstamp INT NOT NULL DEFAULT 0,
+  crdate INT NOT NULL DEFAULT 0,
+  deleted TINYINT(1) NOT NULL DEFAULT 0,
+  hidden  TINYINT(1) NOT NULL DEFAULT 0,
+  show_board_in_frontend  TEXT NOT NULL,
+  allow_archiving  TEXT NOT NULL
+);

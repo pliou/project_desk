@@ -4,9 +4,14 @@ namespace Ppl\ProjectDesk\Ajax;
 
 use TYPO3\CMS\Core\Http\JsonResponse;
 use Psr\Http\Message\ServerRequestInterface;
+use Ppl\ProjectDesk\Helper\TeamAssignmentDataHelper;
 
-final class TeamAssignment extends AbstractAjaxController
+final class TeamAssignment
 {
+    public function __construct(
+        protected readonly TeamAssignmentDataHelper $teamAssignmentDataHelper,
+    ) {}
+
     public function updateAction(ServerRequestInterface $request): JsonResponse
     {
         try {
@@ -22,10 +27,10 @@ final class TeamAssignment extends AbstractAjaxController
 
             switch ($body['action']) {
                 case 'add':
-                    $this->dataHelper->addTeamAssignment($body['teamUid'], $body['userId']);
+                    $this->teamAssignmentDataHelper->addTeamAssignment($body['teamUid'], $body['userId']);
                     break;
                 case 'delete':
-                    $this->dataHelper->removeTeamAssignment($body['teamUid'], $body['userId']);
+                    $this->teamAssignmentDataHelper->removeTeamAssignment($body['teamUid'], $body['userId']);
                     break;
                 default:
                     throw new \InvalidArgumentException('Unsupported action: ' . $body['action']);

@@ -1,137 +1,187 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.0">
-  <file source-language="en" datatype="plaintext" original="messages">
+  <file source-language="en" target-language="de" datatype="plaintext" original="messages">
     <body>
-    
-      <!-- Main Tabs -->
+
       <trans-unit id="mlang_tabs_tab">
         <source>Project Desk Configuration</source>
+        <target>Projektdesk-Konfiguration</target>
       </trans-unit>
+
       <trans-unit id="mlang_tabs_maintab_project">
         <source>Project Management</source>
+        <target>Projektverwaltung</target>
       </trans-unit>
+
       <trans-unit id="mlang_labels_tabdescr">
         <source>Configure your Project Desk integration</source>
+        <target>Konfigurieren Sie Ihre Projektdesk-Integration</target>
       </trans-unit>
 
-      <!-- Sub‑Tabs -->
       <trans-unit id="config">
         <source>General Configuration</source>
+        <target>Allgemeine Konfiguration</target>
       </trans-unit>
+
       <trans-unit id="access">
         <source>Team Access Rights</source>
+        <target>Zugriffsrechte für Teams</target>
       </trans-unit>
+
       <trans-unit id="teams">
         <source>Team Management</source>
+        <target>Teamverwaltung</target>
       </trans-unit>
+
       <trans-unit id="assign">
         <source>Assign Users to Teams</source>
+        <target>Benutzer Teams zuweisen</target>
       </trans-unit>
+
       <trans-unit id="license">
         <source>License</source>
+        <target>Lizenz</target>
       </trans-unit>
 
-      <!-- General Configuration Tab -->
       <trans-unit id="config_label">
         <source>Project Desk Configuration</source>
+        <target>Projektdesk-Konfiguration</target>
       </trans-unit>
 
-      <!-- Teams -->
       <trans-unit id="teams_label">
         <source>Teams</source>
+        <target>Teams</target>
       </trans-unit>
+
       <trans-unit id="teams_description">
         <source>Create one or more teams.</source>
+        <target>Erstellen Sie ein oder mehrere Teams.</target>
       </trans-unit>
+
       <trans-unit id="teams_placeholder">
         <source>Enter team name…</source>
+        <target>Teamnamen eingeben…</target>
       </trans-unit>
 
-      <!-- Save Messages -->
       <trans-unit id="beginning_error_message" xml:space="preserve">
         <source>Error saving on the “%1$s” tab: </source>
+        <target>Fehler beim Speichern auf dem „%1$s“-Tab: </target>
       </trans-unit>
+
       <trans-unit id="beginning_info_message" xml:space="preserve">
         <source>Tab “%1$s” was saved successfully.</source>
+        <target>Tab „%1$s“ wurde erfolgreich gespeichert.</target>
       </trans-unit>
 
-      <!-- License -->
       <trans-unit id="license_label">
         <source>License</source>
-      </trans-unit>
-      <trans-unit id="license_description">
-        <source>Enter your valid license key here.</source>
-      </trans-unit>
-      <trans-unit id="license_placeholder">
-        <source>Enter license key…</source>
+        <target>Lizenz</target>
       </trans-unit>
 
+      <trans-unit id="license_description">
+        <source>Enter your valid license key here.</source>
+        <target>Geben Sie hier Ihren gültigen Lizenzschlüssel ein.</target>
+      </trans-unit>
+
+      <trans-unit id="license_placeholder">
+        <source>Enter license key…</source>
+        <target>Lizenzschlüssel eingeben…</target>
+      </trans-unit>
 
       <trans-unit id="task_permissions">
         <source>Task Permissions</source>
+        <target>Aufgabenberechtigungen</target>
       </trans-unit>
+
       <trans-unit id="task_permissions_description">
         <source>Define what this team can do with tasks</source>
+        <target>Definieren Sie, was dieses Team mit Aufgaben tun darf</target>
       </trans-unit>
 
       <trans-unit id="allow_to_create_new_task">
         <source>Create new tasks</source>
+        <target>Neue Aufgabe erstellen</target>
       </trans-unit>
+
       <trans-unit id="allow_to_delete_task">
         <source>Delete tasks</source>
+        <target>Aufgaben löschen</target>
       </trans-unit>
+
       <trans-unit id="allow_to_assign_self">
         <source>Assign tasks to oneself</source>
+        <target>Aufgaben sich selbst zuweisen</target>
       </trans-unit>
+
       <trans-unit id="allow_to_assign_others">
         <source>Assign tasks to other users</source>
+        <target>Aufgaben anderen Benutzern zuweisen</target>
       </trans-unit>
 
       <trans-unit id="phase_permissions">
         <source>Board &amp; Phase Permissions</source>
+        <target>Board‑ und Phasenberechtigungen</target>
       </trans-unit>
+
       <trans-unit id="phase_permissions_description">
         <source>Control how this team interacts with boards and phases</source>
+        <target>Steuert, wie dieses Team mit Boards und Phasen interagiert</target>
       </trans-unit>
 
       <trans-unit id="allow_to_move_task_phase">
         <source>Move tasks between phases</source>
-      </trans-unit>
-      <trans-unit id="allow_to_create_phase">
-        <source>Create new phase</source>
-      </trans-unit>
-      <trans-unit id="allow_to_delete_phase">
-        <source>Delete existing phase</source>
-      </trans-unit>
-      <trans-unit id="allow_to_merge_boards">
-        <source>Merge boards</source>
-      </trans-unit>
-      <trans-unit id="allow_to_edit_board_structure">
-        <source>Edit board structure</source>
+        <target>Aufgaben zwischen Phasen verschieben</target>
       </trans-unit>
 
+      <trans-unit id="allow_to_create_phase">
+        <source>Create new phase</source>
+        <target>Neue Phase erstellen</target>
+      </trans-unit>
+
+      <trans-unit id="allow_to_delete_phase">
+        <source>Delete existing phase</source>
+        <target>Bestehende Phase löschen</target>
+      </trans-unit>
+
+      <trans-unit id="allow_to_merge_boards">
+        <source>Merge boards</source>
+        <target>Boards zusammenführen</target>
+      </trans-unit>
+
+      <trans-unit id="allow_to_edit_board_structure">
+        <source>Edit board structure</source>
+        <target>Boardstruktur bearbeiten</target>
+      </trans-unit>
 
       <trans-unit id="show_board_in_frontend_label">
         <source>Show board in frontend</source>
+        <target>Board im Frontend anzeigen</target>
       </trans-unit>
+
       <trans-unit id="show_board_in_frontend_description">
         <source>Enable or disable the project board view in the frontend</source>
+        <target>Aktivieren oder deaktivieren Sie die Anzeige des Projektboards im Frontend</target>
       </trans-unit>
 
       <trans-unit id="allow_archiving_label">
         <source>Allow archiving</source>
+        <target>Archivierung erlauben</target>
       </trans-unit>
+
       <trans-unit id="allow_archiving_description">
         <source>Permit teams to archive completed tasks</source>
+        <target>Teams erlauben, abgeschlossene Aufgaben zu archivieren</target>
       </trans-unit>
 
       <trans-unit id="show_board_in_frontend">
         <source>Show board in frontend</source>
-      </trans-unit>
-      <trans-unit id="allow_archiving">
-        <source>Allow archiving</source>
+        <target>Board im Frontend anzeigen</target>
       </trans-unit>
 
+      <trans-unit id="allow_archiving">
+        <source>Allow archiving</source>
+        <target>Archivierung erlauben</target>
+      </trans-unit>
 
     </body>
   </file>

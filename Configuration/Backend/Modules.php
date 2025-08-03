@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
+use Ppl\ProjectDesk\Controller\BoardController;
 use Ppl\ProjectDesk\Controller\ConfigController;
-use Ppl\ProjectDesk\Controller\ManagerController;
+use Ppl\ProjectDesk\Controller\TaskController;
 use Ppl\ProjectDesk\Mapping\RouteMapping;
 
 return [
@@ -36,18 +37,33 @@ return [
         ],
     ],
 
-    'project_project_desk_app' => [
+    'project_project_desk_task' => [
         'parent' => 'project',
         'access' => 'user',
         'iconIdentifier' => 'project-desk-icon-app',
-        'path' => RouteMapping::ROUTE,
+        'path' => RouteMapping::MY_TASK_ROUTE,
         'labels' => [
-            'title' => 'LLL:EXT:project_desk/Resources/Private/Language/Tabs/tabs.xlf:mlang_tabs_tab_manager',
-            'description' => 'LLL:EXT:project_desk/Resources/Private/Language/Tabs/tabs.xlf:mlang_tabs_tab_manager_descr',
+            'title' => 'LLL:EXT:project_desk/Resources/Private/Language/Tabs/tabs.xlf:mlang_tabs_tab_task',
+            'description' => 'LLL:EXT:project_desk/Resources/Private/Language/Tabs/tabs.xlf:mlang_tabs_tab_task_descr',
         ],
         'extensionName' => 'ProjectDesk',
         'controllerActions' => [
-            ManagerController::class => ['main'],
+            TaskController::class => ['myTask'],
+        ],
+    ],
+
+    'project_project_desk_board' => [
+        'parent' => 'project',
+        'access' => 'user',
+        'iconIdentifier' => 'project-desk-icon-app',
+        'path' => RouteMapping::BOARD_ROUTE,
+        'labels' => [
+            'title' => 'LLL:EXT:project_desk/Resources/Private/Language/Tabs/tabs.xlf:mlang_tabs_tab_board',
+            'description' => 'LLL:EXT:project_desk/Resources/Private/Language/Tabs/tabs.xlf:mlang_tabs_tab_board_descr',
+        ],
+        'extensionName' => 'ProjectDesk',
+        'controllerActions' => [
+            BoardController::class => ['board'],
         ],
     ],
 ];

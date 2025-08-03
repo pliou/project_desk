@@ -7,9 +7,11 @@
   </h1>
 
   <f:render partial="Tabs/MainTab" arguments="{tabs: tabs, tabUrls: tabUrls, activeTab: activeTab}" />
+
   <f:if condition="{team_tab}">
-    <f:render partial="Tabs/TeamTab" arguments="{team_tab: team_tab}" />
+    <f:render partial="Tabs/TeamTab" arguments="{team_tab: team_tab, active_team_tab: active_team_tab}" />
   </f:if>
+
   <div class="pd-content-wrapper">
     <f:render partial="Form/Form" arguments="{_all}" />
   </div>

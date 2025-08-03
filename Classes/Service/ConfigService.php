@@ -5,10 +5,14 @@ namespace Ppl\ProjectDesk\Service;
 use Ppl\ProjectDesk\Debugger\Debugger;
 use Ppl\ProjectDesk\Mapping\ConfigurationMapping;
 use Ppl\ProjectDesk\Service\TranslationService;
+use Ppl\ProjectDesk\Service\FlashMessageService;
 use Ppl\ProjectDesk\Repository\TeamRepository;
 use Ppl\ProjectDesk\Repository\LicenseRepository;
 use Ppl\ProjectDesk\Controller\ConfigController;
-use Ppl\ProjectDesk\Helper\DataHelper;
+use Ppl\ProjectDesk\Helper\AccessDataHelper;
+use Ppl\ProjectDesk\Helper\BEUserDataHelper;
+use Ppl\ProjectDesk\Helper\TeamAssignmentDataHelper;
+use Ppl\ProjectDesk\Helper\GeneralDataHelper;
 
 class ConfigService
 {
@@ -16,7 +20,11 @@ class ConfigService
         private readonly TranslationService $translationService,
         private readonly TeamRepository $teamRepository,
         private readonly LicenseRepository $licenseRepository,
-        private readonly DataHelper $dataHelper,
+        private readonly AccessDataHelper $accessDataHelper,
+        private readonly BEUserDataHelper $bEUserDataHelper,
+        private readonly TeamAssignmentDataHelper $teamAssignmentDataHelper,
+        private readonly GeneralDataHelper $generalDataHelper,
+        private readonly FlashMessageService $flashMessageService
     ) {}
 
     /**
@@ -29,10 +37,12 @@ class ConfigService
         $this->translationService->translateConfig($config);
         switch ($tab) {
             case ConfigController::TAB_NAMES[0]: // 'general'
-                // Keine spezifische Logik für den Tab 'general'
+                $config = $this->generalDataHelper->populateConfig($config);
                 break;
 
             case ConfigController::TAB_NAMES[1]: // 'access'
+                $config['team']['value'] = $this->flashMessageService->getFlashMessage(ConfigController::TAB_NAMES[1], FlashMessageService::ACTIVE_TEAM) ?? 'Admins';
+                $config = $this->accessDataHelper->populateConfig($config);
                 break;
 
             case ConfigController::TAB_NAMES[2]: // 'team'
@@ -41,9 +51,9 @@ class ConfigService
 
             case ConfigController::TAB_NAMES[3]: // 'assign'
                 $config[ConfigController::TAB_NAMES[3]]['value'] = $this->adjustTeamAssignment([
-                    'user' => $this->dataHelper->getAllUser(),
+                    'user' => $this->bEUserDataHelper->getAllUser(),
                     'team' => $this->teamRepository->findAllActive(),
-                    'assign' => $this->dataHelper->getTeamAssignment(),
+                    'assign' => $this->teamAssignmentDataHelper->getTeamAssignment(),
                 ]);
                 break;
 

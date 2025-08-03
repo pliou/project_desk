@@ -1,0 +1,307 @@
+/* ======================================================
+   1. Farb- und Design-Variablen
+   ====================================================== */
+:root {
+  /* Hintergrund & Karten */
+  --bg-color: #f0f4f8;
+  --card-bg: rgba(255, 255, 255, 0.65);
+  --card-border-color: rgba(0, 0, 0, 0.08);
+  --shadow-color: rgba(0, 0, 0, 0.05);
+
+  /* Akzentfarben */
+  --primary-color: #0078d4;       /* Ocean Blue */
+  --status-open-color: #0078d4;   /* offen */
+  --status-progress-color: #f7a300; /* in Bearbeitung */
+  --status-done-color: #107c10;   /* erledigt */
+
+  /* Text */
+  --text-color: #1c1c1c;
+  --text-secondary: #595959;
+
+  /* Rundungen & Schrift */
+  --border-radius: 8px;
+  --font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ======================================================
+   2. Global Styles
+   ====================================================== */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  font-family: var(--font-family);
+  color: var(--text-color);
+}
+
+/* ======================================================
+   3. Dashboard Container & Layout
+   ====================================================== */
+.project-dashboard {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ======================================================
+   4. Header / Task-Leiste
+   ====================================================== */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--card-border-color);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--card-border-color);
+  border-radius: var(--border-radius);
+  background-color: rgba(255, 255, 255, 0.5);
+  color: var(--text-color);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.btn:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #005a9e;
+  border-color: #005a9e;
+}
+
+/* ======================================================
+   5. Main Content: Board + Sidebar
+   ====================================================== */
+.dashboard-content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+/* ----- Task-Board (dreispaltig) ----- */
+.task-board {
+  flex: 3;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.task-column {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.column-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.task-count {
+  background-color: #e1e1e1;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 1rem;
+}
+
+/* ----- Sidebar ----- */
+.task-sidebar {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: sticky;
+  top: 2rem;
+}
+
+.task-sidebar h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* ======================================================
+   6. Task-Karten (Frosted Glass / Win11-Stil)
+   ====================================================== */
+.task-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.task-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px var(--shadow-color);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  gap: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  border-left: 4px solid transparent; 
+  min-height: 230px;
+}
+
+.task-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.12);
+
+}
+
+
+.task-card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-top: 1px solid var(--card-border-color);
+  padding-top: 30px;
+}
+
+.task-meta select,
+.task-card-footer select {
+  width: 100%;
+  padding: 0.8rem 1rem;       
+  font-size: 1rem;           
+  border-radius: 12px;          
+  border: 1px solid var(--card-border-color);
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.task-meta select:focus,
+.task-card-footer select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.2); 
+}
+
+
+/* Status-Indikatoren */
+.task-status-open       { border-left-color: var(--status-open-color); }
+.task-status-in-progress{ border-left-color: var(--status-progress-color); }
+.task-status-done       { border-left-color: var(--status-done-color); }
+
+/* Inhalt */
+.task-card-body h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.task-card-body p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Meta-Bereich (Dropdowns) */
+.task-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.task-meta label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.task-meta select {
+  padding: 0.6rem;
+  border: 1px solid var(--card-border-color);
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  font-family: var(--font-family);
+  transition: outline-color 0.2s, border-color 0.2s;
+}
+
+.task-meta select:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 1px;
+  border-color: var(--primary-color);
+}
+
+/* ======================================================
+   7. Responsive Anpassungen
+   ====================================================== */
+@media (max-width: 1200px) {
+  .dashboard-content {
+    flex-direction: column;
+  }
+  .task-sidebar {
+    position: static;
+    width: 100%;
+    top: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-dashboard {
+    padding: 1rem;
+  }
+ 
+  .header-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+}

@@ -1,0 +1,32 @@
+<!-- Resources/Private/Partials/Task/Card.html -->
+<div class="task-card task-status-{task.status.active}">
+  <div class="task-card-body">
+    <h2>{task.title}</h2>
+    <f:if condition="{task.description}">
+      <p>{task.description}</p>
+    </f:if>
+  </div>
+
+  <div class="task-card-footer">
+    <select id="status-{task.id}"
+            name="tasks[{task.id}][status]">
+      <f:for each="{task.status.options}" as="opt">
+        <option value="{opt}"
+                {f:if(condition: '{opt} == {task.status.active}', then: 'selected')}
+        >
+          {opt}
+        </option>
+      </f:for>
+    </select>
+    <select id="assignee-{task.id}"
+            name="tasks[{task.id}][assignee]">
+      <f:for each="{task.assignee.options}" as="opt">
+        <option value="{opt}"
+                {f:if(condition: '{opt} == {task.assignee.active}', then: 'selected')}
+        >
+          {opt}
+        </option>
+      </f:for>
+    </select>
+  </div>
+</div>

@@ -2,6 +2,7 @@
 
 namespace Ppl\ProjectDesk\Ajax;
 
+use Ppl\ProjectDesk\Helper\AccessDataHelper;
 use Ppl\ProjectDesk\Repository\TeamRepository;
 use TYPO3\CMS\Core\Http\JsonResponse;
 use Psr\Http\Message\ServerRequestInterface;
@@ -10,6 +11,7 @@ final class UpdateRepeater
 {
     public function __construct(
         private readonly TeamRepository $teamRepository,
+        private readonly AccessDataHelper $accessDataHelper,
     ) {}
 
     public function updateAction(ServerRequestInterface $request): JsonResponse
@@ -31,6 +33,7 @@ final class UpdateRepeater
 
                 case 'remove':
                     $this->teamRepository->removeByNames([$value]);
+                    $this->accessDataHelper->deleteAccessByTeam($value);
                     break;
 
                 case 'change':

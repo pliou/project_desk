@@ -1,0 +1,17 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+  <div class="pd-layout-container">
+
+    <f:flashMessages queueIdentifier="extbase.flashmessages" />
+
+    <f:spaceless>
+      <link rel="stylesheet" href="{f:uri.resource(path: 'Css/pd_task.css', extensionName: 'ProjectDesk')}" />
+      <link rel="stylesheet" href="{f:uri.resource(path: 'Css/pdmodule.css', extensionName: 'ProjectDesk')}" />
+      <div class="task-container">
+        <f:render section="main" />
+      </div>
+    </f:spaceless>
+
+  </div>
+
+</html>

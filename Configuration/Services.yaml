@@ -9,16 +9,25 @@ services:
     exclude: '../Classes/Domain/Model/*'
     autowire: true
 
+# AJAX CONTROLLER
   project_desk.ajax.update_repeater:
     class: Ppl\ProjectDesk\Ajax\UpdateRepeater
     arguments:
       $teamRepository: '@project_desk.team_repository'
+      $accessDataHelper: '@project_desk.access_data_helper'
       
   project_desk.ajax.team_assignment:
     class: Ppl\ProjectDesk\Ajax\TeamAssignment
     arguments:
-      $dataHelper: '@project_desk.data_helper'
+      $teamAssignmentDataHelper: '@project_desk.team_assignment_data_helper'
 
+  project_desk.ajax.get_access_config:
+    class: Ppl\ProjectDesk\Ajax\GetAccessConfig
+    arguments:
+      $accessDataHelper: '@project_desk.access_data_helper'
+
+
+# CONTROLLER
   project_desk.config_controller:
     class: Ppl\ProjectDesk\Controller\ConfigController
     arguments:
@@ -32,12 +41,28 @@ services:
       $translationService: '@project_desk.translation_service'
       $jSTranslationManager: '@project_desk.js_translation_manager'
       $assetManager: '@project_desk.asset_manager'
+      $accessDataHelper: '@project_desk.access_data_helper'
+      $generalDataHelper: '@project_desk.general_data_helper'
 
+  project_desk.task_controller:
+    class: Ppl\ProjectDesk\Controller\TaskController
+
+  project_desk.board_controller:
+    class: Ppl\ProjectDesk\Controller\BoardController
+
+
+# SERVICE
   project_desk.config_service:
     class: Ppl\ProjectDesk\Service\ConfigService
     arguments:
       $translationService: '@Ppl\ProjectDesk\Service\TranslationService'
       $teamRepository: '@Ppl\ProjectDesk\Repository\TeamRepository'
+      $licenseRepository: '@project_desk.license_repository'
+      $accessDataHelper: '@project_desk.access_data_helper'
+      $bEUserDataHelper: '@project_desk.be_user_data_helper'
+      $teamAssignmentDataHelper: '@project_desk.team_assignment_data_helper'
+      $generalDataHelper: '@project_desk.general_data_helper'
+      $flashMessageService: '@project_desk.flash_message_service'
 
   project_desk.assignment_service:
     class: Ppl\ProjectDesk\Service\AssignmentService
@@ -48,6 +73,8 @@ services:
   project_desk.asset_collector_service:
     class: Ppl\ProjectDesk\Service\AssetCollectorService
 
+
+# MANAGER
   project_desk.js_translation_manager:
     class: Ppl\ProjectDesk\Manager\JSTranslationManager
     arguments:
@@ -57,11 +84,29 @@ services:
   project_desk.asset_manager:
     class: Ppl\ProjectDesk\Manager\AssetManager
 
-  project_desk.data_helper:
-    class: Ppl\ProjectDesk\Helper\DataHelper
+# DATAHELPER
+  project_desk.be_user_data_helper:
+    class: Ppl\ProjectDesk\Helper\BEUserDataHelper
     arguments:
       $connectionPool: '@TYPO3\CMS\Core\Database\ConnectionPool'
 
+  project_desk.team_assignment_data_helper:
+    class: Ppl\ProjectDesk\Helper\TeamAssignmentDataHelper
+    arguments:
+      $connectionPool: '@TYPO3\CMS\Core\Database\ConnectionPool'
+
+  project_desk.access_data_helper:
+    class: Ppl\ProjectDesk\Helper\AccessDataHelper
+    arguments:
+      $connectionPool: '@TYPO3\CMS\Core\Database\ConnectionPool'
+
+  project_desk.general_data_helper:
+    class: Ppl\ProjectDesk\Helper\GeneralDataHelper
+    arguments:
+      $connectionPool: '@TYPO3\CMS\Core\Database\ConnectionPool'
+
+
+# update wizard
   project_desk.add_initial_teamsUpdate:
     class: Ppl\ProjectDesk\Updates\AddInitialTeamsUpdate
     arguments:
@@ -76,9 +121,13 @@ services:
     tags:
       - name: 'install.upgrade.wizard'
 
+
+# FlashMessage
   project_desk.flash_message_service:
     class: Ppl\ProjectDesk\Service\FlashMessageService
 
+
+# REPOS
   project_desk.team_repository:
     class: Ppl\ProjectDesk\Repository\TeamRepository
     arguments:
@@ -89,6 +138,8 @@ services:
     arguments:
       - '@TYPO3\CMS\Core\Database\ConnectionPool'
 
+
+# Commands
   Ppl\ProjectDesk\Command\TestCommand:
     tags:
       -

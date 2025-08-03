@@ -1,0 +1,92 @@
+<f:layout name="PDTaskLayout" />
+
+<f:section name="main">
+  <div class="projectdesk-container project-dashboard">
+
+    <!-- Dashboard-Header -->
+    <header class="dashboard-header">
+      <h1>
+          {menu.active}
+      </h1>
+
+      <div class="header-actions">
+        <f:for each="{menu.navi}" as="value" key="key">
+          <a href="{f:uri.action(action: key)}" class="btn">
+            {value}
+          </a>
+        </f:for>
+
+      </div>
+    </header>
+
+    <main class="dashboard-content">
+      <div class="task-board">
+        <!-- Offen -->
+        <div class="task-column">
+          <div class="column-header">
+            <h3>
+              <f:translate key="{td}status_open" />
+            </h3>
+          </div>
+          <div class="task-cards">
+            <f:for each="{assignedTasks}" as="task">
+              <f:if condition="{task.status.active} == 'open'">
+                <f:then>
+                  <f:render partial="Task/Card" arguments="{task: task, td: td}" />
+                </f:then>
+              </f:if>
+            </f:for>
+          </div>
+        </div>
+
+        <div class="task-column">
+          <div class="column-header">
+            <h3>
+              <f:translate key="{td}status_in_progress" />
+            </h3>
+          </div>
+          <div class="task-cards">
+            <f:for each="{assignedTasks}" as="task">
+              <f:if condition="{task.status.active} == 'in-progress'">
+                <f:then>
+                  <f:render partial="Task/Card" arguments="{task: task, td: td}" />
+                </f:then>
+              </f:if>
+            </f:for>
+          </div>
+        </div>
+
+        <div class="task-column">
+          <div class="column-header">
+            <h3>
+              <f:translate key="{td}status_done" />
+            </h3>
+          </div>
+          <div class="task-cards">
+            <f:for each="{assignedTasks}" as="task">
+              <f:if condition="{task.status.active} == 'done'">
+                <f:then>
+                  <f:render partial="Task/Card" arguments="{task: task, td: td}" />
+                </f:then>
+              </f:if>
+            </f:for>
+          </div>
+        </div>
+      
+        <div class="task-column">
+            <div class="column-header">
+              <h3>
+                <f:translate key="{td}todo_tasks" />
+              </h3>
+            </div>
+            <div class="task-cards">
+              <f:for each="{todoTasks}" as="task">
+                <f:render partial="Task/Card" arguments="{task: task}" />
+              </f:for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</f:section>

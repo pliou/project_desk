@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages">
+    <body>
+
+      <trans-unit id="my_task">
+        <source>My Tasks</source>
+      </trans-unit>
+      <trans-unit id="board">
+        <source>To Board</source>
+      </trans-unit>
+      <trans-unit id="new_task">
+        <source>New Task</source>
+      </trans-unit>
+
+    </body>
+  </file>
+</xliff>

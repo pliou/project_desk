@@ -17,6 +17,8 @@ class TranslationMapping
         'tabs' => 'LLL:EXT:project_desk/Resources/Private/Language/Tabs/tabs.xlf:',
         'javascript' => 'LLL:EXT:project_desk/Resources/Private/Language/JS/js.xlf:',
         'js' => 'LLL:EXT:project_desk/Resources/Private/Language/JS/js.xlf:',
+        'task' => 'LLL:EXT:project_desk/Resources/Private/Language/Task/task.xlf:',
+        'menu' => 'LLL:EXT:project_desk/Resources/Private/Language/Menu/menu.xlf:',
     ];
 }
    
